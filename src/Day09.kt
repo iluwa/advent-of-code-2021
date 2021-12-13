@@ -1,4 +1,4 @@
-typealias Point2D = Pair<Int, Int>
+private typealias Point2D = Pair<Int, Int>
 
 fun main() {
     fun part1(heightmap: List<List<Int>>): Int {
