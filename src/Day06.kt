@@ -14,9 +14,9 @@ fun main() {
     println(part2(initial))
 }
 
-val cache = hashMapOf<Pair<Int, Int>, Long>()
+private val cache = hashMapOf<Pair<Int, Int>, Long>()
 
-fun children(initialState: Int, daysOfLiving: Int): Long {
+private fun children(initialState: Int, daysOfLiving: Int): Long {
     if (daysOfLiving < initialState + 1) return 0
     return cache[Pair(initialState, daysOfLiving)] ?: run {
         var sum: Long = ((daysOfLiving - initialState - 1) / 7 + if (initialState < daysOfLiving) 1 else 0).toLong()
