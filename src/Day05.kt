@@ -2,7 +2,7 @@ import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
 
-typealias Coordinate = Pair<Int, Int>
+private typealias Coordinate = Pair<Int, Int>
 
 fun main() {
     fun part1(lines: List<Line>, maxX: Int, maxY: Int): Int {
@@ -40,13 +40,13 @@ fun main() {
     println(part2(lines, maxX, maxY))
 }
 
-fun parseCoordinate(s: String): Coordinate {
+private fun parseCoordinate(s: String): Coordinate {
     return s.split(",")
         .map { it.toInt() }
         .zipWithNext()[0]
 }
 
-sealed class Line(open val start: Coordinate, open val end: Coordinate) {
+private sealed class Line(open val start: Coordinate, open val end: Coordinate) {
     companion object {
         fun of(start: Coordinate, end: Coordinate): Line {
             return when {
@@ -60,21 +60,21 @@ sealed class Line(open val start: Coordinate, open val end: Coordinate) {
     abstract fun coordinates(): List<Coordinate>
 }
 
-class Horizontal(override val start: Coordinate, override val end: Coordinate) : Line(start, end) {
+private class Horizontal(override val start: Coordinate, override val end: Coordinate) : Line(start, end) {
     override fun coordinates(): List<Coordinate> {
         return (min(start.first, end.first)..max(start.first, end.first))
             .map { Pair(it, start.second) }
     }
 }
 
-class Vertical(override val start: Coordinate, override val end: Coordinate) : Line(start, end) {
+private class Vertical(override val start: Coordinate, override val end: Coordinate) : Line(start, end) {
     override fun coordinates(): List<Coordinate> {
         return (min(start.second, end.second)..max(start.second, end.second))
             .map { Pair(start.first, it) }
     }
 }
 
-class Diagonal(override val start: Coordinate, override val end: Coordinate) : Line(start, end) {
+private class Diagonal(override val start: Coordinate, override val end: Coordinate) : Line(start, end) {
     override fun coordinates(): List<Coordinate> {
         val fX: Int.(Int) -> Int = if (start.first > end.first) {
             Int::minus

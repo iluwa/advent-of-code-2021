@@ -47,7 +47,7 @@ private fun Map<Node, List<Node>>.routes(
     }
 }
 
-sealed class Node(open val name: String) {
+private sealed class Node(open val name: String) {
     companion object {
         fun of(s: String) = when (s) {
             "start" -> Start
@@ -57,9 +57,9 @@ sealed class Node(open val name: String) {
     }
 }
 
-object Start : Node("start")
-object End : Node("end")
-sealed class Cave(override val name: String) : Node(name) {
+private object Start : Node("start")
+private object End : Node("end")
+private sealed class Cave(override val name: String) : Node(name) {
     companion object {
         fun of(s: String) = when (s) {
             s.lowercase() -> Small(s)
@@ -69,6 +69,6 @@ sealed class Cave(override val name: String) : Node(name) {
     }
 }
 
-data class Small(override val name: String) : Cave(name)
-data class Big(override val name: String) : Cave(name)
+private data class Small(override val name: String) : Cave(name)
+private data class Big(override val name: String) : Cave(name)
 

@@ -33,7 +33,7 @@ fun main() {
     println(part2(parseBoards(input), numberSeq))
 }
 
-fun parseBoards(input: List<String>): List<Board> {
+private fun parseBoards(input: List<String>): List<Board> {
     val boards = mutableListOf<Board>()
     var i = 1
     while (i < input.size) {
@@ -52,7 +52,7 @@ fun parseBoards(input: List<String>): List<Board> {
     return boards
 }
 
-class Board(private val board: List<MutableList<Pair<Int, Boolean>>>) {
+private class Board(private val board: List<MutableList<Pair<Int, Boolean>>>) {
     private val rowsState = mutableMapOf<Int, Int>()
     private val columnsState = mutableMapOf<Int, Int>()
 
